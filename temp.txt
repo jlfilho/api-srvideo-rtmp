@@ -1,0 +1,20 @@
+-tune zerolatency
+'-c:a', 'copy',
+'-rtbufsize', '100M',
+
+
+
+commandin = ['ffmpeg',
+           '-y', '-re',
+           '-f', 'rawvideo',
+           '-vcodec', 'rawvideo',
+           '-pix_fmt', 'rgb24',
+           '-s:v', "{}x{}".format(width, height),
+           '-r', str(fps),
+           '-i', '-',
+           '-tune', 'zerolatency',
+           '-c:v', 'libx264',
+           '-pix_fmt', 'yuv420p',
+           '-preset', 'ultrafast',
+           '-f', 'flv',
+           rtmpout]
